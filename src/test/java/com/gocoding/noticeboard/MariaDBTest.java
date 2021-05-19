@@ -1,58 +1,69 @@
 package com.gocoding.noticeboard;
 
 import com.gocoding.noticeboard.entity.ROLE;
-import com.gocoding.noticeboard.entity.User;
-import com.gocoding.noticeboard.persistence.UserRepository;
+import com.gocoding.noticeboard.entity.Member;
+import com.gocoding.noticeboard.persistence.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class MariaDBTest {
 
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
 
     @Test
     public void addUserTest(){
-        List<User> userList = new ArrayList<>();
+        List<Member> memberList = new ArrayList<>();
         for(int i=1;i<=3;i++){
-            User user = new User();
-            user.setUser_id("user" + i);
-            user.setUser_nickname("userNickname" + i);
-            user.setUser_password("1111");
-            user.setRole(ROLE.ROLE_USER);
-            userList.add(user);
+            Member member = new Member();
+            member.setId("user" + i);
+            member.setNickname("userNickname" + i);
+            member.setPassword("1111");
+            member.setRole(ROLE.ROLE_USER);
+            memberList.add(member);
         }
-        userRepository.saveAll(userList);
+        memberRepository.saveAll(memberList);
     }
 
     @Test
     public void addManangerTest(){
-        List<User> managerList = new ArrayList<>();
+        List<Member> managerList = new ArrayList<>();
         for(int i=1;i<=2;i++){
-            User user = new User();
-            user.setUser_id("manager" + i);
-            user.setUser_nickname("managerNickname" + i);
-            user.setUser_password("2222");
-            user.setRole(ROLE.ROLE_MANAGER);
-            managerList.add(user);
+            Member member = new Member();
+            member.setId("manager" + i);
+            member.setNickname("managerNickname" + i);
+            member.setPassword("2222");
+            member.setRole(ROLE.ROLE_MANAGER);
+            managerList.add(member);
         }
-        userRepository.saveAll(managerList);
+        memberRepository.saveAll(managerList);
     }
 
     @Test
     public void addAdminTest(){
-            User user = new User();
-            user.setUser_id("admin");
-            user.setUser_nickname("adminNickname");
-            user.setUser_password("3333");
-            user.setRole(ROLE.ROLE_ADMIN);
+            Member member = new Member();
+            member.setId("admin");
+            member.setNickname("adminNickname");
+            member.setPassword("3333");
+            member.setRole(ROLE.ROLE_ADMIN);
 
-            userRepository.save(user);
+            memberRepository.save(member);
 
+    }
+
+    @Test
+    public void checkMember(){
+        Optional<Member> member = memberRepository.findById("user1");
+        if(member.isPresent()){
+            System.out.println(member.get().getNickname());
+        }else{
+            System.out.println("Cant found member");
+        }
     }
 }
