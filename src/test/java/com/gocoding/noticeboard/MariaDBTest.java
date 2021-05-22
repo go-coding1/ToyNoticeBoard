@@ -6,6 +6,8 @@ import com.gocoding.noticeboard.persistence.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,16 @@ public class MariaDBTest {
     @Autowired
     private MemberRepository memberRepository;
 
+    private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();;
+
+    @Test
+    public void passwordEncoderTest(){
+
+        System.out.println(passwordEncoder.encode("1111"));
+        String encodePass = passwordEncoder.encode("1111");
+        System.out.println(passwordEncoder.matches("1111",encodePass));
+    }
+
     @Test
     public void addUserTest(){
         List<Member> memberList = new ArrayList<>();
@@ -24,7 +36,7 @@ public class MariaDBTest {
             Member member = new Member();
             member.setId("user" + i);
             member.setNickname("userNickname" + i);
-            member.setPassword("1111");
+            member.setPassword(passwordEncoder.encode("1111"));
             member.setRole(ROLE.ROLE_USER);
             memberList.add(member);
         }
@@ -38,7 +50,7 @@ public class MariaDBTest {
             Member member = new Member();
             member.setId("manager" + i);
             member.setNickname("managerNickname" + i);
-            member.setPassword("2222");
+            member.setPassword(passwordEncoder.encode("2222"));
             member.setRole(ROLE.ROLE_MANAGER);
             managerList.add(member);
         }
@@ -50,7 +62,7 @@ public class MariaDBTest {
             Member member = new Member();
             member.setId("admin");
             member.setNickname("adminNickname");
-            member.setPassword("3333");
+            member.setPassword(passwordEncoder.encode("3333"));
             member.setRole(ROLE.ROLE_ADMIN);
 
             memberRepository.save(member);
