@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>회원가입 페이지</title>
+</head>
+<body th:align="center">
+<h1>회원가입</h1>
+<form th:action="register" method="post">
+  <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+    <tr>
+      <td bgcolor="pink" th:text="아이디"></td>
+      <td><input name="id" type="text" size="10" ></td>
+    </tr>
+    <tr>
+      <td bgcolor="pink" th:text="닉네임"></td>
+      <td><input name="nickname" type="text" size="10" ></td>
+    </tr>
+    <tr>
+      <td bgcolor="pink" th:text="패스워드"></td>
+      <td><input name="password" type="password" size="10" ></td>
+    </tr>
+    <tr>
+      <td bgcolor="pink" th:text="권한"></td>
+      <td>
+        <select name="role">
+          <option th:each="list : ${list}" th:value="${list}" th:text="${list}"></option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" th:align="center">
+        <input type="submit" value="등록" >
+      </td>
+    </tr>
+  </table>
+</form>
+<a th:href="@{/register}">회원 가입</a>
+
+</body>
+</html>

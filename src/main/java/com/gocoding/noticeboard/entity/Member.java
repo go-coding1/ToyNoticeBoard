@@ -13,6 +13,12 @@ public class Member {
 
     private String nickname;
     private String password;
+
     @Enumerated(EnumType.STRING)
     private ROLE role;
+
+    @Override
+    public String toString(){
+        return "ID : " + id + " nickname : " + nickname + " password : " + password + " ROLE : " + role;
+    }
 }

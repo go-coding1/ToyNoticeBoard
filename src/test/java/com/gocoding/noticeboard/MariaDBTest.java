@@ -19,7 +19,7 @@ public class MariaDBTest {
     @Autowired
     private MemberRepository memberRepository;
 
-    private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();;
+    private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     @Test
     public void passwordEncoderTest(){
