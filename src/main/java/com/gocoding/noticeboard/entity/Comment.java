@@ -31,7 +31,7 @@ public class Comment {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    @ManyToOne(targetEntity = Member.class, optional = false)
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "member_id")
     private Member member;
 

@@ -31,11 +31,11 @@ public class Post {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    @ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "member_id" , nullable = false)
     private Member member;
 
-    @ManyToOne(targetEntity = Board.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Board.class, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
