@@ -15,5 +15,11 @@ public class Board {
     @Column(name="board_id")
     private Long id;
 
-    private String board_name;
+    @Column(name="board_name")
+    private String name;
+
+    @Override
+    public String toString(){
+        return "Board = [ id : " + this.id + ", " + this.name + "]";
+    }
 }

@@ -18,10 +18,10 @@ public class Post {
     @Column(name="post_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "post_title")
     private String title;   //제목
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 3000, name = "post_contnet")
     private String content; //내용
 
     @CreatedDate
@@ -32,10 +32,18 @@ public class Post {
     private LocalDateTime modifiedDate;
 
     @ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id" , nullable = false)
     private Member member;
 
     @ManyToOne(targetEntity = Board.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "board_id", nullable = false)
     private Board board;
+
+    //이 밑으로는 컬럼 아님
+    @Transient
+    @Override
+    public String toString(){
+        return "Post = [ id : " + this.id + " , title : " + this.title + " , content : " + this.content + " , createdDate : " + this.createdDate + " , modifiedDate : " + this.modifiedDate + "]";
+    }
+
 }

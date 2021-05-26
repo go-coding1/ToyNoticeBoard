@@ -22,6 +22,6 @@ public class Member {
 
     @Override
     public String toString(){
-        return "ID : " + id + " nickname : " + nickname + " password : " + password + " ROLE : " + role;
+        return "Member = [ id : " + id + " nickname : " + nickname + " password : " + password + " ROLE : " + role + "]";
     }
 }

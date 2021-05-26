@@ -38,4 +38,9 @@ public class Comment {
     @ManyToOne(targetEntity = Post.class, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "post_id")
     private Post post;
+
+    @Override
+    public String toString(){
+        return "Comment = [ id : " + this.id + " , parentId : " + this.parentId + " , content : " + this.content + " , createDate : " + this.createdDate + " , modifiedDate : " + this.modifiedDate + "]";
+    }
 }
