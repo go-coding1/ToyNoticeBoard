@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/user",true);
+                .defaultSuccessUrl("/board",true);
         http
                 .logout()
                 .invalidateHttpSession(true)

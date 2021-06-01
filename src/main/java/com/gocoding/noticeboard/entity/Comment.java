@@ -1,7 +1,6 @@
 package com.gocoding.noticeboard.entity;
 //댓글 엔티티
 
-
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
