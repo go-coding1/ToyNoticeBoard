@@ -5,5 +5,5 @@ import com.gocoding.noticeboard.entity.Board;
 
 public interface BoardService {
     Board getBoard(BoardDto boardDto);
-    void
+    void postBoard(BoardDto boardDto);
 }
