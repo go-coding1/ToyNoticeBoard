@@ -16,4 +16,14 @@ public class PostServiceImpl implements PostService{
     public List<Post> getPostList(Long board_id) {
         return postRepository.findAllByBoardId(board_id);
     }
+
+    @Override
+    public Post getPost(Long post_id) {
+        return postRepository.findById(post_id).orElse(null);
+    }
+
+    @Override
+    public void postPost(Post post) {
+        postRepository.save(post);
+    }
 }
