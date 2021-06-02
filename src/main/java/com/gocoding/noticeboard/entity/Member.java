@@ -24,4 +24,6 @@ public class Member {
     public String toString(){
         return "Member = [ id : " + id + " nickname : " + nickname + " password : " + password + " ROLE : " + role + "]";
     }
+
 }
+

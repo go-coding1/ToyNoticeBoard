@@ -10,6 +10,23 @@
   <tr>
     <td bgcolor="pink">게시판 이름</td>
   </tr>
+  <tr th:each="list : ${boardList}">
+    <td ><a th:href="/getPost?"+${list.id} th:text="${list.name}"></a></td>
+  </tr>
 </table>
+
+<form th:action="postBoard" method="post">
+<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+  <tr>
+    <td bgcolor="skyblue">게시판 추가</td>
+  </tr>
+  <tr>
+    <td><input name="name" type="text" size="10" /></td>
+  </tr>
+  <tr>
+    <td><input type="submit" value="게시판 추가"/></td>
+  </tr>
+</table>
+</form>
 </body>
 </html>

@@ -1,11 +1,16 @@
 package com.gocoding.noticeboard.entity;
 
-import lombok.Data;
+import com.gocoding.noticeboard.dto.BoardDto;
+import lombok.*;
+import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +22,12 @@ public class Board {
 
     @Override
     public String toString(){
-        return "Board = [ id : " + this.id + ", " + this.name + "]";
+        return "Board = [ id : " + this.id + ", name : " + this.name + "]";
+    }
+
+    public void set(BoardDto boardDto){
+        if(!StringUtils.isEmpty(boardDto.getName())){
+            this.setName(boardDto.getName());
+        }
     }
 }
