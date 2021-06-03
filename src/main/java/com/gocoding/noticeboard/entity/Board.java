@@ -1,10 +1,13 @@
 package com.gocoding.noticeboard.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gocoding.noticeboard.dto.BoardDto;
 import lombok.*;
 import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,6 +22,10 @@ public class Board {
 
     @Column(name="board_name")
     private String name;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<Post> postList = new ArrayList<>();
 
     @Override
     public String toString(){

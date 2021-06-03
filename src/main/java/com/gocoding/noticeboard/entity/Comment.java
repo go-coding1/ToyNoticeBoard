@@ -1,7 +1,9 @@
 package com.gocoding.noticeboard.entity;
 //댓글 엔티티
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,35 +13,30 @@ import java.util.List;
 
 @Entity
 @Data
-public class Comment {
+public class Comment extends TimeEntity{
     @Id
     @GeneratedValue
     @Column(name = "comment_id")
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "default 0", name="comment_parentId")
-    private Long parentId;
+    @Column(nullable = false, name="comment_parentId")
+    private Long parentId=0L;
 
     @Column(name="comment_content")
     private String content;
 
-    @CreatedDate
-    @Column(updatable = false, nullable = false)
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    private LocalDateTime modifiedDate;
-
+    @JsonBackReference
     @ManyToOne(targetEntity = Member.class, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @JsonBackReference
     @ManyToOne(targetEntity = Post.class, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "post_id")
     private Post post;
 
     @Override
     public String toString(){
-        return "Comment = [ id : " + this.id + " , parentId : " + this.parentId + " , content : " + this.content + " , createDate : " + this.createdDate + " , modifiedDate : " + this.modifiedDate + "]";
+        return "Comment = [ id : " + this.id + " , parentId : " + this.parentId + " , content : " + this.content +  "]";
     }
 }

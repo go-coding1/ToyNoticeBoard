@@ -19,6 +19,7 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    //게시판 목록 조회 함수
     @GetMapping(value="/board")
     public ResponseEntity<List<Board>> getBoard(Model model){
         List<Board> boardList = boardService.getBoardList();
@@ -29,11 +30,27 @@ public class BoardController {
         return new ResponseEntity<List<Board>>(boardList, HttpStatus.OK);
     }
 
-
+    //게시판 추가
     @PostMapping(value="/postBoard")
     public ResponseEntity<String> postBoard(@Valid BoardDto boardDto){
         boardService.postBoard(boardDto);
 
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    //게시판 수정
+    @PutMapping(value="/putBoard")
+    public ResponseEntity<String> putBoard(@Valid Board board){
+        boardService.putBoard(board);
+
+        return new ResponseEntity<>("수정 되었습니다.", HttpStatus.OK);
+    }
+
+    //게시판 삭제
+    @DeleteMapping(value="/deleteBoard")
+    public ResponseEntity<String> deleteBoard(@Valid Board board){
+        boardService.deleteBoard(board);
+
+        return new ResponseEntity<>("삭제 되었습니다.", HttpStatus.OK);
     }
 }

@@ -1,6 +1,8 @@
 package com.gocoding.noticeboard.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import javax.persistence.*;
@@ -19,6 +21,14 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private ROLE role;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Comment> commentList = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Post> postList = new ArrayList<>();
 
     @Override
     public String toString(){

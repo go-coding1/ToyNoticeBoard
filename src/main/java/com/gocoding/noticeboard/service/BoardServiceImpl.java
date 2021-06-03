@@ -30,4 +30,17 @@ public class BoardServiceImpl implements BoardService{
 
         boardRepository.save(board);
     }
+
+    @Override
+    public void putBoard(Board putBoard) {
+        Board board = boardRepository.findById(putBoard.getId()).orElse(null);
+        board.setName(putBoard.getName());
+
+        boardRepository.save(board);
+    }
+
+    @Override
+    public void deleteBoard(Board board) {
+        boardRepository.deleteById(board.getId());
+    }
 }

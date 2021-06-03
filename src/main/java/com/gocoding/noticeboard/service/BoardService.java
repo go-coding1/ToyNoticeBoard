@@ -9,4 +9,6 @@ public interface BoardService {
     Board getBoard(Long id);
     List<Board> getBoardList();
     void postBoard(BoardDto boardDto);
+    void putBoard(Board board);
+    void deleteBoard(Board board);
 }

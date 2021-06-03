@@ -26,4 +26,19 @@ public class PostServiceImpl implements PostService{
     public void postPost(Post post) {
         postRepository.save(post);
     }
+
+    @Override
+    public void putPost(Post postPost) {
+        Post post = postRepository.findById(postPost.getId()).orElse(null);
+        post.setTitle(postPost.getTitle());
+        post.setContent(post.getContent());
+
+        postRepository.save(post);
+    }
+
+    @Override
+    public void deletePost(Post post) {
+        postRepository.deleteById(post.getId());
+    }
+
 }

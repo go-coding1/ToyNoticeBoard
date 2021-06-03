@@ -10,4 +10,8 @@ public interface PostService {
     Post getPost(Long post_id);
 
     void postPost(Post post);
+
+    void putPost(Post post);
+
+    void deletePost(Post post);
 }
